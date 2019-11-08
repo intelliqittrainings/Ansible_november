@@ -1,0 +1,12 @@
+---
+- name: Install git and clone a remote git repo
+  hosts: all
+  tasks:
+   - name: Install git
+     apt:
+      name: git
+      state: present
+   - name: Clone a remote repo
+     git:
+      repo: https://github.com/intelliqittrainings/maven.git
+      dest: /home/ubuntu/mygit  

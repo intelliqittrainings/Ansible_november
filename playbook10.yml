@@ -1,0 +1,14 @@
+---
+- name: Install/unistall/upgrade s/w application
+  hosts: all
+  tasks:
+   - name: Install or uinstall or upgrade s/w
+     apt:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+     with_items:
+      - {a: tree,b: present,c: no}
+      - {a: openjdk-8-jdk,b: absent,c: no}
+      - {a: git,b: latest,c: no}
+      - {a: firewalld,b: absent,c: yes}

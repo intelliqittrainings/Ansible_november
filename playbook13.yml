@@ -1,0 +1,33 @@
+---
+- name: Create CI-CD setup of Jenkins
+  hosts: 172.31.80.101
+  tasks:
+   - name: Install s/w necessary for jenkins
+     apt:
+      name: "{{item}}"
+      state: present
+      update_cache: no
+     with_items:
+      - openjdk-8-jdk
+      - git
+      - maven
+   - name: Download jenkins.war
+     get_url:
+      url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+      dest: /tmp
+- name: Configure qa and prod servers
+  hosts: webserver
+  tasks:
+   - name: Install tomcat8 and tomcat8-admin
+     apt:
+      name: "{{item}}"
+      state: present
+     with_items:
+      - tomcat8
+      - tomcat8-admin
+   - name: Copy the tomcat-users file into qa and prod servers
+     copy:
+      src: tomcat-users.xml
+      dest: /etc/tomcat8
+
+
