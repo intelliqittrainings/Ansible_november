@@ -1,0 +1,10 @@
+---
+- name: Check url respons eof all managed nodes
+  uri:
+   url: "{{item}}"
+   status: 200
+  with_items:
+   - http://54.91.230.252
+   - http://172.31.89.71
+   - http://172.31.80.101
+...

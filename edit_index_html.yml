@@ -1,0 +1,6 @@
+---
+- name: edit index.html file
+  copy: 
+   content: "IntelliQ...\n"
+   dest: /var/www/html/index.html
+...

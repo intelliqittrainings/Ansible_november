@@ -1,0 +1,17 @@
+---
+- name: Check if a directory is presnet if not create a file
+  hosts: all
+  tasks:
+   - name: check for dir f1
+     stat: 
+      path: /home/ubuntu/f1
+     register: a
+   - name: Display output of stat module
+     debug:
+      var: a
+   - name: Create file
+     file:
+      name: /home/ubuntu/f1
+      state: touch
+     when: a.stat.exists == false
+

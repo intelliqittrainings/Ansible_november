@@ -1,0 +1,14 @@
+---
+- name: Create a user and display the output
+  hosts: all
+  tasks:
+   - name: Create user
+     user:
+      name: Rajesh
+      password: intleliq
+      home: /home/ubuntu/Rajesh
+      uid: 8999
+     register: a
+   - name: Display output of above module
+     debug:
+      var: a
